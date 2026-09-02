@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import studyRouter from './routes/study';
 import { errorHandler } from './middleware/errorHandler';
 
@@ -27,8 +28,27 @@ app.get('/api/health', (_req, res) => {
 // Mount study generation routes
 app.use('/api/study', studyRouter);
 
-// Centralized error handling middleware
+// Centralized error handling middleware for API routes
 app.use(errorHandler);
+
+// Serve frontend static build files in production (or when dist exists)
+const distPath = path.resolve(process.cwd(), 'dist');
+app.use(express.static(distPath));
+
+// For all non-API GET requests, serve index.html (SPA fallback)
+app.get('*', (req, res) => {
+  // If the request was intended for an undefined API route, return 404 JSON
+  if (req.path.startsWith('/api')) {
+    res.status(404).json({
+      error: {
+        code: 'NOT_FOUND',
+        message: 'The requested API endpoint does not exist.',
+      },
+    });
+    return;
+  }
+  res.sendFile(path.join(distPath, 'index.html'));
+});
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {

@@ -137,6 +137,35 @@ Runs 25 unit tests verifying Zod schemas, quiz score calculations, incorrect que
 
 ---
 
+## Deploying to Render (Unified Full-Stack Web Service)
+
+RecallForge is architected to deploy as a single, unified Node.js Web Service on **Render**, where Express serves both the backend API endpoints and the compiled React frontend static files.
+
+### Option A: 1-Click Render Blueprint (Recommended)
+1. In your [Render Dashboard](https://dashboard.render.com/), click **New +** and select **Blueprint**.
+2. Connect your GitHub repository: `rawat9340/RecallForge`.
+3. Render will automatically read [`render.yaml`](render.yaml) and configure:
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm run start:prod`
+4. In the Environment section, enter your `GEMINI_API_KEY`.
+5. Click **Apply**. Render will build and deploy your full-stack app!
+
+### Option B: Manual Web Service Setup
+1. In Render Dashboard, click **New +** and select **Web Service**.
+2. Connect your repository `https://github.com/rawat9340/RecallForge`.
+3. Fill in the service configuration:
+   - **Name**: `recallforge`
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm run start:prod`
+   - **Plan**: `Free`
+4. Under **Environment Variables**, add:
+   - `NODE_ENV`: `production`
+   - `GEMINI_API_KEY`: *(your Google AI Studio API key)*
+5. Click **Create Web Service**.
+
+---
+
 ## AI Failure Handling
 
 Handling unpredictable LLM output is the central pillar of RecallForge:

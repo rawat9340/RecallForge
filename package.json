@@ -6,6 +6,7 @@
   "description": "RecallForge — AI Study & Revision Assistant",
   "scripts": {
     "start": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run server\" \"npm run client\"",
+    "start:prod": "tsx server/index.ts",
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run server\" \"npm run client\"",
     "server": "tsx watch server/index.ts",
     "client": "vite",
