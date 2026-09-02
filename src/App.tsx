@@ -27,7 +27,7 @@ export const App: React.FC = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((prev: 'dark' | 'light') => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   return (

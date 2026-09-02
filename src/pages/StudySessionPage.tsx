@@ -49,20 +49,20 @@ export const StudySessionPage: React.FC<StudySessionPageProps> = ({
   // Handlers for flashcard deck
   const handleNextCard = useCallback(() => {
     if (flashcardIndex < studySet.flashcards.length - 1) {
-      setFlashcardIndex((prev) => prev + 1);
+      setFlashcardIndex((prev: number) => prev + 1);
       setIsFlipped(false);
     }
   }, [flashcardIndex, studySet.flashcards.length]);
 
   const handlePrevCard = useCallback(() => {
     if (flashcardIndex > 0) {
-      setFlashcardIndex((prev) => prev - 1);
+      setFlashcardIndex((prev: number) => prev - 1);
       setIsFlipped(false);
     }
   }, [flashcardIndex]);
 
   const handleFlip = useCallback(() => {
-    setIsFlipped((prev) => !prev);
+    setIsFlipped((prev: boolean) => !prev);
   }, []);
 
   const handleResetCards = useCallback(() => {

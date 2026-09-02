@@ -55,7 +55,7 @@ export const useQuiz = (initialQuestions: QuizQuestion[]): UseQuizReturn => {
     (optionIndex: number) => {
       if (isSubmitted || !currentQuestion) return;
 
-      setUserAnswers((prev) => ({
+      setUserAnswers((prev: Record<string, number>) => ({
         ...prev,
         [currentQuestion.id]: optionIndex,
       }));
@@ -69,7 +69,7 @@ export const useQuiz = (initialQuestions: QuizQuestion[]): UseQuizReturn => {
    */
   const nextQuestion = useCallback(() => {
     if (currentIndex < activeQuestions.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
+      setCurrentIndex((prev: number) => prev + 1);
       setIsSubmitted(false);
     } else {
       setIsComplete(true);

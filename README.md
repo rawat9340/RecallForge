@@ -145,7 +145,7 @@ RecallForge is architected to deploy as a single, unified Node.js Web Service on
 1. In your [Render Dashboard](https://dashboard.render.com/), click **New +** and select **Blueprint**.
 2. Connect your GitHub repository: `rawat9340/RecallForge`.
 3. Render will automatically read [`render.yaml`](render.yaml) and configure:
-   - **Build Command**: `npm install && npm run build`
+   - **Build Command**: `npm install --include=dev && npm run build`
    - **Start Command**: `npm run start:prod`
 4. In the Environment section, enter your `GEMINI_API_KEY`.
 5. Click **Apply**. Render will build and deploy your full-stack app!
@@ -156,7 +156,7 @@ RecallForge is architected to deploy as a single, unified Node.js Web Service on
 3. Fill in the service configuration:
    - **Name**: `recallforge`
    - **Runtime**: `Node`
-   - **Build Command**: `npm install && npm run build`
+   - **Build Command**: `npm install --include=dev && npm run build`
    - **Start Command**: `npm run start:prod`
    - **Plan**: `Free`
 4. Under **Environment Variables**, add:
